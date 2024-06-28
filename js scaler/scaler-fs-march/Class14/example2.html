@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button1">Click</button>
+    <h1 style="color: red"><span>Some detail here!</span></h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem veritatis
+      labore culpa veniam quidem. Reprehenderit, veniam. Sapiente ad commodi
+      aliquam, tempore exercitationem, delectus nostrum, quasi voluptatem iure
+      possimus deserunt molestias.
+    </p>
+
+    <button class="parlour" id="button2">Style</button>
+
+    <button id="resolveBtnRef">Reolve</button>
+    <button id="rejectBtn">Reject</button>
+
+    <script>
+      const button1Ref = document.getElementById("button1");
+
+      button1Ref.addEventListener("click", function () {
+        window.alert("Hi");
+      });
+
+      const button2Ref = document.getElementById("button2");
+      button2Ref.addEventListener("click", function () {
+        const h1Ref = document.querySelector("h1");
+        const pRef = document.querySelector("p");
+
+        h1Ref.style.color = "green";
+        pRef.style.fontSize = "30px";
+      });
+
+      // const fruites = ["Apple", "Banana", "Mango", "Pinapple", "Chiku"];
+
+      // const body = document.querySelector("body");
+      // const ulRef = document.createElement("ul");
+
+      // fruites.forEach((item) => {
+      //   let li = document.createElement("li");
+      //   li.innerHTML = item;
+      //   ulRef.appendChild(li);
+      // });
+
+      // body.appendChild(ulRef);
+
+      /************/
+      /*
+      const fruites1 = ["Apple", "Banana", "Mango", "Pinapple", "Chiku"];
+
+      
+      const ulRefs = document.createElement("ul");
+
+      let liRef = fruites1.map((item) => `<li>${item}</li>`).join('');
+      
+      ulRefs.innerHTML = liRef;
+      document.querySelector("body").appendChild(ulRefs);
+
+
+*/
+
+      const fruites = ["Apple", "Bananas", "Mango", "Pinapple", "Chiku"];
+
+      const ulRef = document.createElement("ul");
+
+      fruites.map((item) => {
+        let li = document.createElement("li");
+        li.textContent = item;
+        ulRef.appendChild(li);
+      });
+
+      document.querySelector("body").appendChild(ulRef);
+
+      /***********/
+
+      const resolveBtnRef = document.querySelector("#resolveBtnRef");
+      const rejectBtnRef = document.querySelector("#rejectBtn");
+
+      /*************************/
+
+      const myPromise = () => {
+        return new Promise((resolve, reject) => {
+          resolveBtnRef.addEventListener("click", () => {
+            resolve("Resolved Promise");
+          });
+          rejectBtnRef.addEventListener("click", () => {
+            reject("Reject Promise");
+          });
+        });
+      };
+      console.log(myPromise());
+      myPromise()
+        .then(response => {
+          console.log(response);
+          return response;
+        })       
+        .catch((err) => {
+          console.error(err);
+        });
+
+
+        console.log(myPromise());
+    </script>
+  </body>
+</html>

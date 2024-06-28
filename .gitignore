@@ -1,0 +1,16 @@
+# Ignore all log files
+*.log
+
+# Ignore build directory and everything inside it
+/build/
+
+# Ignore logs directory and everything inside it
+/logs/
+
+# Ignore target directories in any subfolder
+**/target/
+
+# Ignore .DS_Store files (common on macOS)
+.DS_Store
+
+**/node_modules/
