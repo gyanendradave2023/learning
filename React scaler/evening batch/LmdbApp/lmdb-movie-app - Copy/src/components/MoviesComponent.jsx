@@ -6,25 +6,24 @@ import PaginationComponent from "./PaginationComponent";
 
 function MoviesComponent() {
   const [movies, setMovies] = useState([]);
-  // const [pageNo, setPageNo] = useState(1);
+  const [pageNo, setPageNo] = useState(1);
   const [watchlist, setWatchlist] = useState([]);
-let pageNo = 1;
-  const fetchMoviesList = useCallback(async (pageNo) => {
+
+  const fetchMoviesList = useCallback(async () => {
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/popular?api_key=2af4c018ae5207101f6076ee341dc30d&language=en-US&page=${pageNo}`
       );
       console.log(response);
-      setMovies(response.data?.results || []);
+      setMovies(response.data.results);
     } catch (error) {
       console.error(error);
     }
   }, [pageNo]);
 
   useEffect(() => {
-    fetchMoviesList(1);
+    fetchMoviesList();
   }, [fetchMoviesList]);
-
 
   useEffect(() => {
     const storedWatchlist = localStorage.getItem("watchlist");
@@ -47,6 +46,16 @@ let pageNo = 1;
     localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
   };
 
+  console.log(watchlist);
+
+  const handleNext = () => {
+    setPageNo((prevPageNo) => prevPageNo + 1);
+  };
+
+  const handlePrev = () => {
+    setPageNo((prevPageNo) => (prevPageNo > 1 ? prevPageNo - 1 : 1));
+  };
+
   return (
     <div className="w-full pt-12 pb-4 px-12">
       <div className="flex justify-center gap-10 flex-wrap">
@@ -61,8 +70,10 @@ let pageNo = 1;
         ))}
       </div>
 
-      <PaginationComponent      
-        onPageChange = {fetchMoviesList}      
+      <PaginationComponent
+        pageNo={pageNo}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
       />
     </div>
   );
