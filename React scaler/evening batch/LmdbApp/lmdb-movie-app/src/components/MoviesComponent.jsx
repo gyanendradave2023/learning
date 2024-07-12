@@ -26,37 +26,17 @@ let pageNo = 1;
   }, [fetchMoviesList]);
 
 
-  useEffect(() => {
-    const storedWatchlist = localStorage.getItem("watchlist");
-    if (storedWatchlist) {
-      setWatchlist(JSON.parse(storedWatchlist));
-    }
-  }, []);
-
-  const addToWatchlist = (movie) => {
-    const updatedWatchlist = [...watchlist, movie];
-    setWatchlist(updatedWatchlist);
-    localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
-  };
-
-  const removeFromWatchlist = (movie) => {
-    const updatedWatchlist = watchlist.filter(
-      (watchlistMovie) => watchlistMovie.id !== movie.id
-    );
-    setWatchlist(updatedWatchlist);
-    localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
-  };
+  
 
   return (
-    <div className="w-full pt-12 pb-4 px-12">
+    <div className="w-full pt-20 pb-4 px-12 relative">
+      <div className="absolute top-6 right-4 text-xl">Total washlist movie: {watchlist.length}</div>      
       <div className="flex justify-center gap-10 flex-wrap">
         {movies.map((movie) => (
           <MovieCardComponent
             key={movie.id}
-            movie={movie}
-            addToWatchlist={addToWatchlist}
-            watchlist={watchlist}
-            removeFromWatchlist={removeFromWatchlist}
+            movie={movie}          
+            updateWatchlist={setWatchlist}           
           />
         ))}
       </div>
