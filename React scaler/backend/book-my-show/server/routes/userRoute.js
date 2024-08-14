@@ -1,5 +1,5 @@
 const express = require("express");
-
+const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 const userRouter = express.Router();
@@ -42,9 +42,15 @@ userRouter.post("/login", async (req, res) => {
         message: "Sorry, invalid password entered!",
       });
     }
+    const tokan = jwt.sign({userId: user._id}, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    console.log("Token", tokan);
+
     res.send({
       success: true,
-      message: "You've successfully logged in!",
+      message: "Login successfully!",
+      data: tokan,
     });
   } catch (error) {
     console.error(error);
