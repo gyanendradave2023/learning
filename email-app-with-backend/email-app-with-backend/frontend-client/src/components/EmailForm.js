@@ -52,7 +52,7 @@ const EmailForm = () => {
             id="body"
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            className=" p-4 mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
             rows="5"
             required
           />
