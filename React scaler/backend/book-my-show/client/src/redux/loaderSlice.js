@@ -1,7 +1,7 @@
-import{createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const loaderSlice = createSlice({
-    name: 'loader',
+    name: 'loaders',
     initialState: {
         loading: false,
     },
@@ -14,3 +14,6 @@ export const loaderSlice = createSlice({
         },
     },
 });
+
+export const { showLoader, hideLoader } = loaderSlice.actions;
+export default loaderSlice.reducer; 

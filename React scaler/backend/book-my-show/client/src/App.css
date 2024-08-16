@@ -1,3 +1,8 @@
+*, *::before, *::after, html, body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -9,6 +14,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.d-flex {
+  display: flex;
 }
 .flex-1 {
   flex: 1;
@@ -264,6 +272,17 @@ hr {
 .ant-table-content {
   overflow-y: auto;
   width: 100%;
+}
+
+
+.sticky {   
+  position: "sticky";
+  top: 0;
+  z-index: 1;
+  width: "100%";
+  display: "flex";
+  align-items: "center";
+
 }
 @-webkit-keyframes spin {
   0% {
